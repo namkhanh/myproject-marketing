@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<!--     <context:component-scan base-package="org.springbyexample.web.servlet.mvc" /> -->
+	<import resource="hibernate.xml"/>
+
+	<bean id="userController" class="com.construction.action.UserController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+				<property name="mappings">
+					<props>
+						<prop key="/viewUsers.html">view</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="userDAO" ref="myUserDAO" />
+	</bean>
+
+	<bean id="userFormController" class="com.construction.action.UserFormController">
+		<property name="formView" value="userform"/>
+		<property name="userDAO" ref="myUserDAO" />
+  	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/viewUsers.html">userController</prop>
+				<prop key="/editUser.html">userFormController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/pages/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="contentType" value="text/html; charset=UTF-8" />
+	</bean>
+
+</beans>
