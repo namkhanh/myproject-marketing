@@ -1,0 +1,8 @@
+#Thu Nov 24 16:48:02 ICT 2011
+WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
+defaultDestination=D\:/apache-tomcat-7.0.16/webapps/ROOT
+defaultVariables=
+eclipse.preferences.version=1
+includeTeamPrivateFiles=false
+map|0=WebContent|,|,|,|,
+useCurrentDateForDestinationFiles=false
